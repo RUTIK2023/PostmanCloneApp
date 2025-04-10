@@ -8,10 +8,6 @@ namespace PostmanCloneUI
 {
     public enum HttpAction
     { 
-        GET,
-        POST,
-        PUT,
-        DELETE,
-        PATCH
+        GET
     }
 }

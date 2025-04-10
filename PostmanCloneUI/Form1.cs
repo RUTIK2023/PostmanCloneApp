@@ -7,7 +7,7 @@ namespace PostmanCloneUI
 
 {
 
-
+   
     public partial class Form1 : Form
     {
 
@@ -16,7 +16,7 @@ namespace PostmanCloneUI
         public Form1()
         {
             InitializeComponent();
-            httpVerb.SelectedItem = "GET";
+            //api = new ApiService(); 
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -33,29 +33,17 @@ namespace PostmanCloneUI
         {
             // validtaionn requires
 
-            if (api.IsValidUrl(apiText.Text) == false)
-            {
+            if (api.IsValidUrl(apiText.Text)== false) {
                 systemStatus.Text = "Invalid URL..";
                 return;
             }
-
-
-            HttpAction action;
-
-            if (Enum.TryParse(httpVerb.SelectedItem !.ToString(), out action) == false)
-            {
-                systemStatus.Text = "Invalid  Http Verb";
-                return;
-            }
-           
 
             try
             {
                 systemStatus.Text = "API calling...";
 
-                resultsText.Text = await api.CallApiAsync(apiText.Text,bodyText.Text,action);
-                callData.SelectedTab = resultTab;
-                resultTab.Focus();
+                resultsText.Text=  await api.CallApiAsync(apiText.Text);
+
                 systemStatus.Text = "Ready";
 
 
@@ -75,12 +63,7 @@ namespace PostmanCloneUI
         {
 
         }
-
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 
-
+   
 }
